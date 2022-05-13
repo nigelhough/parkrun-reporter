@@ -1,0 +1,10 @@
+services:
+  php:
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+    working_dir: "/app"
+    volumes:
+      - .:/app
+      - ../parkrun-scraper:/parkrun-scraper
+      - ./tmp:/tmp/parkrun-scraper
