@@ -35,7 +35,8 @@ class Time implements ReportableInterface
 
         return new Report(
             $variance,
-            "The total time of all runners was {$totalTime->getFormatted()} seconds with the median time being {$medianTime->getFormatted()} seconds."
+            "The total time of all runners was {$totalTime->getFormatted()} seconds with the median time being " .
+            "{$medianTime->getFormatted()} seconds."
         );
     }
 }

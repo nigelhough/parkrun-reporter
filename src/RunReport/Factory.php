@@ -10,8 +10,11 @@ use parkrunReporter\Report\EventSummary;
 use parkrunReporter\Report\FirstFemale;
 use parkrunReporter\Report\FirstFinisher;
 use parkrunReporter\Report\FirstMale;
+use parkrunReporter\Report\Milestone;
+use parkrunReporter\Report\FirstTimers;
 use parkrunReporter\Report\MedianFinisher;
 use parkrunReporter\Report\Nigel;
+use parkrunReporter\Report\PersonalBest;
 use parkrunReporter\Report\Time;
 use parkrunReporter\RunReportFactoryInterface;
 use parkrunReporter\RunReportInterface;
@@ -38,6 +41,13 @@ class Factory implements RunReportFactoryInterface
                 yield new FirstFemale($parkrunScraper);
                 yield new MedianFinisher($parkrunScraper);
                 yield new Time($parkrunScraper);
+                yield new PersonalBest($parkrunScraper);
+                yield new FirstTimers($parkrunScraper);
+                yield new Milestone\First($parkrunScraper);
+                yield new Milestone\Fifty($parkrunScraper);
+                yield new Milestone\Hundred($parkrunScraper);
+                yield new Milestone\TwoFifty($parkrunScraper);
+                yield new Milestone\FiveHundred($parkrunScraper);
                 yield new Nigel($parkrunScraper);
             })(
                 $parkrunScraper

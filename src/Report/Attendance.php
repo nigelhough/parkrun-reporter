@@ -29,9 +29,9 @@ class Attendance implements ReportableInterface
         return new Report(
             $variance,
             match ($variance) {
-                'a' => "There were {$summary->getResults()->count()} runners.",
                 'b' => "{$summary->getResults()->count()} eager parkrunners were up bright and early to take part.",
                 'c' => "{$summary->getResults()->count()} lined up to walk, run or jog 5k.",
+                default => "There were {$summary->getResults()->count()} runners."
             }
         );
     }

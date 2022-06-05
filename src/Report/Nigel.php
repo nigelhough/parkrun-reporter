@@ -18,7 +18,7 @@ class Nigel implements ReportableInterface
 
     public function getVariances(): array
     {
-        return ['a'];
+        return ['a', 'b'];
     }
 
     public function report(string $location, string $event, string $variance): ?ReportInterface
@@ -31,7 +31,10 @@ class Nigel implements ReportableInterface
             if ($result->getAthlete()->getId() === self::NIGEL_RUNNER_ID) {
                 return new Report(
                     $variance,
-                    "Nigel ran at this event!"
+                    match ($variance) {
+                        'b' => "Nigel was here",
+                        default => 'Nigel ran at this event!'
+                    }
                 );
             }
         }

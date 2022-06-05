@@ -1,10 +1,11 @@
 services:
-  php:
+  php81:
     build:
       context: ./build
       dockerfile: Dockerfile
     working_dir: "/app"
     volumes:
       - .:/app
+      - ../php-time-source:/php-time-source
       - ../parkrun-scraper:/parkrun-scraper
       - ./tmp:/tmp/parkrun-scraper

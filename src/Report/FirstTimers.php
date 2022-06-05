@@ -8,7 +8,7 @@ use parkrunReporter\ReportableInterface;
 use parkrunReporter\ReportInterface;
 use parkrunScraper\ApiInterface;
 
-class EventSummary implements ReportableInterface
+class FirstTimers implements ReportableInterface
 {
     public function __construct(private ApiInterface $api)
     {
@@ -24,12 +24,21 @@ class EventSummary implements ReportableInterface
         if (!in_array($variance, $this->getVariances())) {
             throw new InvalidVarianceException("Invalid variance supplied for report '{$variance}'.");
         }
+
         $summary = $this->api->getEventSummary($location, $event);
+        $count = 0;
+        foreach ($summary->getResults()->iterate() as $result) {
+            $isFirsTimer = $result->getAchievements() === 'First Timer!';
+            $count += (int) $isFirsTimer;
+        }
+
+        if ($count === 0) {
+            return null;
+        }
 
         return new Report(
             $variance,
-            "The {$summary->getEvent()->getLocation()->getName()} event number {$summary->getEvent()->getNumber()} " .
-            "on {$summary->getEvent()->getDate()->format('jS F Y')}."
+            "{$count} runner's did their first parkrun at {$summary->getEvent()->getLocation()->getName()}."
         );
     }
 }

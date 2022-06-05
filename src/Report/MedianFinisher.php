@@ -25,17 +25,18 @@ class MedianFinisher implements ReportableInterface
             throw new InvalidVarianceException("Invalid variance supplied for report '{$variance}'.");
         }
         $summary = $this->api->getEventSummary($location, $event);
-        $median = null;
         $medianPosition = (int) floor($summary->getResults()->count() / 2);
         foreach ($summary->getResults()->iterate() as $result) {
             if ($result->getPosition() === $medianPosition) {
-                $median = $result;
+                return new Report(
+                    $variance,
+                    "{$result->getAthlete()->getName()} was the median position runner at position " .
+                    "{$result->getPosition()}, past the post with a time of {$result->getTime()}."
+                );
             }
         }
 
-        return new Report(
-            $variance,
-            "{$median->getAthlete()->getName()} was the median position runner at position {$median->getPosition()}, past the post with a time of {$median->getTime()}."
-        );
+        // Only one runner? Can't find Median runner.
+        return null;
     }
 }
