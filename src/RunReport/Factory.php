@@ -15,6 +15,7 @@ use parkrunReporter\Report\FirstTimers;
 use parkrunReporter\Report\MedianFinisher;
 use parkrunReporter\Report\Nigel;
 use parkrunReporter\Report\PersonalBest;
+use parkrunReporter\Report\PersonalBestTime;
 use parkrunReporter\Report\Time;
 use parkrunReporter\RunReportFactoryInterface;
 use parkrunReporter\RunReportInterface;
@@ -42,6 +43,7 @@ class Factory implements RunReportFactoryInterface
                 yield new MedianFinisher($parkrunScraper);
                 yield new Time($parkrunScraper);
                 yield new PersonalBest($parkrunScraper);
+                yield new PersonalBestTime($parkrunScraper);
                 yield new FirstTimers($parkrunScraper);
                 yield new Milestone\First($parkrunScraper);
                 yield new Milestone\Fifty($parkrunScraper);

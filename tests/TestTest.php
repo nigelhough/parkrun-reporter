@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace parkrunScraper;
+namespace parkrunReporter;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,7 +1,7 @@
 {
     "name": "nigelhough/parkrun-reporter",
-    "description": "A tool for generating parkrun reports",
-    "type": "project",
+    "description": "A library for generating parkrun reports",
+    "type": "library",
     "version": "0.0.1",
     "license": "MIT",
     "minimum-stability": "stable",
